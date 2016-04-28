@@ -20,12 +20,16 @@
 
 @implementation MainViewController {
   NSArray * tempInfo;
+  NSMutableDictionary* photoStore;
+  NSMutableDictionary* profileStore;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
   self.title = @"Instagram Project";
+  photoStore = [[NSMutableDictionary alloc] init];
+  profileStore = [[NSMutableDictionary alloc] init];
   APIManager * temp = [APIManager sharedInstance];
   [[APIManager sharedInstance] getVedioAndImageLinkArray: ^(bool result) {
     tempInfo = temp.infos;
@@ -67,22 +71,38 @@
         imageCell.likesLabel.text =  [@"likes: " stringByAppendingString:[@(object.like) stringValue]];
         imageCell.commentsLabel.text =  [@"comments: " stringByAppendingString:[@(object.comment) stringValue]];
         
-        [[APIManager sharedInstance] getImageByLink:object.imageNail withCallBack:^(NSURL* url){
-          NSData * imageData = [[NSData alloc] initWithContentsOfURL: url];
-          imageCell.mainPhotoImageView.image = [UIImage imageWithData: imageData];
-        }];
-        [[APIManager sharedInstance] getImageByLink:object.userProfile withCallBack:^(NSURL* url){
-          NSData * imageData = [[NSData alloc] initWithContentsOfURL: url];
-          imageCell.thumbnailImageView.layer.cornerRadius = imageCell.thumbnailImageView.frame.size.height / 2;
-          imageCell.thumbnailImageView.layer.borderWidth = 1;
-          imageCell.thumbnailImageView.layer.borderColor = [[UIColor grayColor] CGColor];
-          CALayer *imageLayer = imageCell.thumbnailImageView.layer;
-          imageLayer.cornerRadius = 0.5 * imageCell.thumbnailImageView.frame.size.width;
-          imageLayer.masksToBounds = YES;
-          imageCell.thumbnailImageView.image = [UIImage imageWithData: imageData];
-        }];
+        // prevent call API deplicate time
+        if (!photoStore[object.id]) {
+          [[APIManager sharedInstance] getImageByLink:object.imageNail withCallBack:^(NSURL* url){
+            NSData * imageData = [[NSData alloc] initWithContentsOfURL: url];
+            imageCell.mainPhotoImageView.image = [UIImage imageWithData: imageData];
+            NSString *tempId = object.id;
+            //
+            [photoStore setObject:imageCell.mainPhotoImageView.image forKey:[tempId copy]];
+          }];
+        } else {
+          imageCell.mainPhotoImageView.image = photoStore[object.id];
+        }
+        
+        imageCell.thumbnailImageView.layer.cornerRadius = imageCell.thumbnailImageView.frame.size.height / 2;
+        imageCell.thumbnailImageView.layer.borderWidth = 1;
+        imageCell.thumbnailImageView.layer.borderColor = [[UIColor grayColor] CGColor];
+        CALayer *imageLayer = imageCell.thumbnailImageView.layer;
+        imageLayer.cornerRadius = 0.5 * imageCell.thumbnailImageView.frame.size.width;
+        imageLayer.masksToBounds = YES;
+        
+        // prevent call API deplicate time
+        if (! profileStore[object.name]) {
+          [[APIManager sharedInstance] getImageByLink:object.userProfile withCallBack:^(NSURL* url) {
+            NSData * imageData = [[NSData alloc] initWithContentsOfURL: url];
+            imageCell.thumbnailImageView.image = [UIImage imageWithData: imageData];
+            [profileStore setObject:imageCell.thumbnailImageView.image forKey:[object.name copy]];
+          }];
+        } else {
+          imageCell.thumbnailImageView.image = profileStore[object.name];
+        }
         return imageCell;
-        // show video
+      // show video
       } else {
         static NSString *CellIdentifier1 = @"ImageCell";
         //static NSString *CellIdentifier2 = @"VideoCell";
