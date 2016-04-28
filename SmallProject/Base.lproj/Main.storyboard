@@ -1,99 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dS8-OC-kOA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zcE-9p-K9v">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Video-->
-        <scene sceneID="BJQ-Lg-scz">
+        <!--Main View Controller-->
+        <scene sceneID="2pi-Ak-Fz1">
             <objects>
-                <viewController id="LxN-dF-1iB" sceneMemberID="viewController">
+                <viewController id="zcE-9p-K9v" customClass="MainViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="g5J-6d-OAC"/>
-                        <viewControllerLayoutGuide type="bottom" id="Bt2-4n-p5C"/>
+                        <viewControllerLayoutGuide type="top" id="owv-NB-AKt"/>
+                        <viewControllerLayoutGuide type="bottom" id="RJV-TR-TfW"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3i4-3N-BEl">
+                    <view key="view" contentMode="scaleToFill" id="Vnr-1O-F1v">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="141" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="o0m-H0-Sa3">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="141" id="LJx-l2-kRz">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="141"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LJx-l2-kRz" id="ug1-PK-dYj">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="140.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3JS-CW-btZ">
+                                <rect key="frame" x="88" y="151" width="240" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="RzO-pm-Std"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="o0m-H0-Sa3" secondAttribute="trailing" id="Q2V-jP-K74"/>
-                            <constraint firstItem="o0m-H0-Sa3" firstAttribute="bottom" secondItem="Bt2-4n-p5C" secondAttribute="top" id="c73-1d-gWc"/>
-                            <constraint firstItem="o0m-H0-Sa3" firstAttribute="top" secondItem="3i4-3N-BEl" secondAttribute="top" id="fXj-GV-nA2"/>
-                            <constraint firstItem="o0m-H0-Sa3" firstAttribute="leading" secondItem="3i4-3N-BEl" secondAttribute="leading" id="wgs-cJ-BGg"/>
+                            <constraint firstItem="3JS-CW-btZ" firstAttribute="top" secondItem="owv-NB-AKt" secondAttribute="bottom" constant="131" id="1Hj-cR-N3c"/>
+                            <constraint firstItem="3JS-CW-btZ" firstAttribute="leading" secondItem="Vnr-1O-F1v" secondAttribute="leadingMargin" constant="68" id="Evm-yR-yZm"/>
+                            <constraint firstItem="RJV-TR-TfW" firstAttribute="top" secondItem="3JS-CW-btZ" secondAttribute="bottom" constant="289" id="pyO-Fi-k3V"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Video" id="Vxp-8z-iAM"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ocC-LD-1Fe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-77" y="-266"/>
-        </scene>
-        <!--Photo-->
-        <scene sceneID="MeT-Pc-MMc">
-            <objects>
-                <viewController id="Taa-8e-ypj" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Rd9-OF-vqM"/>
-                        <viewControllerLayoutGuide type="bottom" id="bZG-Qq-54c"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="JmC-HB-l69">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="05h-DE-a7h">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="05h-DE-a7h" firstAttribute="bottom" secondItem="bZG-Qq-54c" secondAttribute="top" id="4DL-tJ-9ym"/>
-                            <constraint firstAttribute="trailing" secondItem="05h-DE-a7h" secondAttribute="trailing" id="RXH-EQ-er3"/>
-                            <constraint firstItem="05h-DE-a7h" firstAttribute="top" secondItem="JmC-HB-l69" secondAttribute="top" id="fnn-Yp-3eL"/>
-                            <constraint firstItem="05h-DE-a7h" firstAttribute="leading" secondItem="JmC-HB-l69" secondAttribute="leading" id="ube-4c-SJJ"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Photo" id="Kef-nn-vZS"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E2w-tp-yEl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-77" y="-927"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="kWN-ua-ZWL">
-            <objects>
-                <tabBarController id="dS8-OC-kOA" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="rMp-SR-7DB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
                     <connections>
-                        <segue destination="Taa-8e-ypj" kind="relationship" relationship="viewControllers" id="AN3-dV-14e"/>
-                        <segue destination="LxN-dF-1iB" kind="relationship" relationship="viewControllers" id="HXe-nR-eks"/>
+                        <outlet property="showImage" destination="3JS-CW-btZ" id="FOU-LY-wFY"/>
                     </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3bs-pc-bqL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h0M-Xl-eDh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-897" y="-596"/>
+            <point key="canvasLocation" x="-1247" y="-276"/>
         </scene>
     </scenes>
 </document>
