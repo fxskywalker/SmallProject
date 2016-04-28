@@ -17,6 +17,10 @@
 @synthesize imageLarge;
 @synthesize videoNail;
 @synthesize videoLarge;
+@synthesize userProfile;
+@synthesize name;
+@synthesize like;
+@synthesize comment;
 
 - (id)init
 {
@@ -28,6 +32,10 @@
     self.imageLarge = @"";
     self.videoNail = @"";
     self.videoLarge = @"";
+    self.userProfile = @"";
+    self.name = @"";
+    self.like = 0;
+    self.comment = 0;
   }
   return self;
 }
@@ -75,6 +83,11 @@
     for(int i = 0 ; i < [responseObject[@"data"] count]; i++) {
       InfoObject * tempObject = [[InfoObject alloc] init];
       tempObject.id = (NSString*)(responseObject[@"data"][i][@"id"]);
+      tempObject.name = (NSString*)(responseObject[@"data"][i][@"user"][@"username"]);
+      tempObject.userProfile = (NSString*)(responseObject[@"data"][i][@"user"][@"profile_picture"]);
+      tempObject.like = [(responseObject[@"data"][i][@"comments"][@"count"]) integerValue];
+      tempObject.comment = [(responseObject[@"data"][i][@"likes"][@"count"]) integerValue];
+            
       if ([(NSString*)(responseObject[@"data"][i][@"type"]) isEqualToString:@"image"]) {
         tempObject.type = @"image";
         tempObject.imageNail = (NSString*) (responseObject[@"data"][i][@"images"][@"thumbnail"][@"url"]);
@@ -95,7 +108,6 @@
     [alertView show];
   }];
   
-  // 5
   [operation start];
 }
 
