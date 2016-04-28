@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
+  self.title = @"Instagram Project";
   APIManager * temp = [APIManager sharedInstance];
   [[APIManager sharedInstance] getVedioAndImageLinkArray: ^(bool result) {
     tempInfo = temp.infos;
@@ -68,6 +69,12 @@
         }];
         [[APIManager sharedInstance] getImageByLink:object.userProfile withCallBack:^(NSURL* url){
           NSData * imageData = [[NSData alloc] initWithContentsOfURL: url];
+          imageCell.thumbnailImageView.layer.cornerRadius = imageCell.thumbnailImageView.frame.size.height / 2;
+          imageCell.thumbnailImageView.layer.borderWidth = 1;
+          imageCell.thumbnailImageView.layer.borderColor = [[UIColor grayColor] CGColor];
+          CALayer *imageLayer = imageCell.thumbnailImageView.layer;
+          imageLayer.cornerRadius = 0.5 * imageCell.thumbnailImageView.frame.size.width;
+          imageLayer.masksToBounds = YES;
           imageCell.thumbnailImageView.image = [UIImage imageWithData: imageData];
         }];
         return imageCell;
