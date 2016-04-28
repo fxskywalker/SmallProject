@@ -17,8 +17,7 @@
 @synthesize videoLarge;
 @synthesize userProfile;
 @synthesize name;
-@synthesize like;
-@synthesize comment;
+
 
 - (id)init
 {
