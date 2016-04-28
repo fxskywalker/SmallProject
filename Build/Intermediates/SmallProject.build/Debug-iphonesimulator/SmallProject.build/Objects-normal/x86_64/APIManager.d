@@ -10,4 +10,5 @@ dependencies: \
   /Users/fangxin/Documents/SmallProject/Build/Products/Debug-iphonesimulator/AFNetworking.framework/Headers/AFHTTPRequestOperation.h \
   /Users/fangxin/Documents/SmallProject/Build/Products/Debug-iphonesimulator/AFNetworking.framework/Headers/AFHTTPRequestOperationManager.h \
   /Users/fangxin/Documents/SmallProject/Build/Products/Debug-iphonesimulator/AFNetworking.framework/Headers/AFURLSessionManager.h \
-  /Users/fangxin/Documents/SmallProject/Build/Products/Debug-iphonesimulator/AFNetworking.framework/Headers/AFHTTPSessionManager.h
+  /Users/fangxin/Documents/SmallProject/Build/Products/Debug-iphonesimulator/AFNetworking.framework/Headers/AFHTTPSessionManager.h \
+  /Users/fangxin/Documents/SmallProject/SmallProject/InfoObject.h

@@ -10,35 +10,6 @@
 #import <UIKit/UIKit.h>
 #import "AFNetworking.h"
 
-
-@interface InfoObject : NSObject
-{
-  NSString * id;
-  NSString * type;
-  NSString * imageNail;
-  NSString * imageLarge;
-  NSString * videoNail;
-  NSString * videoLarge;
-  NSString * userProfile;
-  NSString * name;
-  NSInteger * like;
-  NSInteger * comment;
-  
-}
-@property (nonatomic, retain) NSString *id;
-@property (nonatomic, retain) NSString *type;
-@property (nonatomic, retain) NSString *imageNail;
-@property (nonatomic, retain) NSString *imageLarge;
-@property (nonatomic, retain) NSString *videoNail;
-@property (nonatomic, retain) NSString *videoLarge;
-@property (nonatomic, retain) NSString *userProfile;
-@property (nonatomic, retain) NSString *name;
-@property (nonatomic) NSInteger* like;
-@property (nonatomic) NSInteger* comment;
-
-@end
-
-
 @interface APIManager : NSObject
 {
   NSString * baseURL;
@@ -49,7 +20,7 @@
 
 - (void) getImageByLink: (NSString*) link withCallBack: (void(^)(NSURL*))completion;
 - (void) getVideoByLink: (NSString*) link withCallBack: (void(^)(NSURL*))completion;
-- (void) getVedioAndImageLinkArray;
+- (void) getVedioAndImageLinkArray: (void(^)(bool))completion;
 
 + (id)sharedInstance;
 

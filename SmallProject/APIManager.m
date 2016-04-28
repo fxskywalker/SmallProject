@@ -8,38 +8,7 @@
 
 #import "APIManager.h"
 #import "AFNetworking.h"
-
-
-@implementation InfoObject
-@synthesize id;
-@synthesize type;
-@synthesize imageNail;
-@synthesize imageLarge;
-@synthesize videoNail;
-@synthesize videoLarge;
-@synthesize userProfile;
-@synthesize name;
-@synthesize like;
-@synthesize comment;
-
-- (id)init
-{
-  if (self = [super init])
-  {
-    self.id = @"";
-    self.type = @"";
-    self.imageNail = @"";
-    self.imageLarge = @"";
-    self.videoNail = @"";
-    self.videoLarge = @"";
-    self.userProfile = @"";
-    self.name = @"";
-    self.like = 0;
-    self.comment = 0;
-  }
-  return self;
-}
-@end
+#import "InfoObject.h"
 
 
 @implementation APIManager
@@ -62,13 +31,13 @@
 {
   if (self = [super init])
   {
-    self.baseURL = @"https://api.instagram.com/v1/users/3178274469/media/recent?access_token=3178274469.649a0fe.975563ad16f04634b468cb4b72d5477b&count=10&max_id=";
+    self.baseURL = @"https://api.instagram.com/v1/users/3178274469/media/recent?access_token=3178274469.649a0fe.975563ad16f04634b468cb4b72d5477b&count=5&max_id=";
     self.infos = [[NSMutableArray alloc] init];
   }
   return self;
 }
 
-- (void) getVedioAndImageLinkArray {
+- (void) getVedioAndImageLinkArray: (void(^)(bool))completion  {
   NSURL *url = [NSURL URLWithString:self.baseURL];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
   
@@ -99,6 +68,7 @@
       }
       [self.infos addObject:tempObject];
     }
+    completion(true);
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving data"
                                                         message:[error localizedDescription]
