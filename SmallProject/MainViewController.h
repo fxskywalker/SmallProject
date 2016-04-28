@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MainViewController : UIViewController
-@property (nonatomic, copy) NSString *year;
-@property (nonatomic, copy) NSString *poster;
 
 @end
 

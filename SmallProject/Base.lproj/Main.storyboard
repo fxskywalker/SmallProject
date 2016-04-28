@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="gKC-xD-mLy" customClass="ImageTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ImageCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="gKC-xD-mLy" customClass="ImageTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="600" height="240"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gKC-xD-mLy" id="tsy-mm-r8P">
@@ -62,7 +62,7 @@
                                             <outlet property="thumbnailImageView" destination="FyV-0X-pyS" id="zoJ-pM-kLx"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Mjr-s9-dS6" customClass="VideoTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="VideoCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Mjr-s9-dS6" customClass="VideoTableViewCell">
                                         <rect key="frame" x="0.0" y="268" width="600" height="240"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mjr-s9-dS6" id="egb-Q2-chc">
@@ -100,8 +100,7 @@
                                             <outlet property="commentsLabel" destination="OFl-iB-nQP" id="RY2-We-LCe"/>
                                             <outlet property="likesLabel" destination="3Jx-rS-Y5O" id="eH5-c1-i12"/>
                                             <outlet property="nameLabel" destination="AxW-1j-EqO" id="eBv-TS-6vK"/>
-                                            <outlet property="thumbnailImageView" destination="egb-Q2-chc" id="y5A-Vy-9Fh"/>
-                                            <outlet property="videoView" destination="19a-F1-H4e" id="w2Y-HX-VFd"/>
+                                            <outlet property="thumbnailImageView" destination="kNc-tS-XOI" id="Z1e-Dk-tUr"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
