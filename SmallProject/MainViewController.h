@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MainViewController.h
 //  SmallProject
 //
 //  Created by FangXin on 4/27/16.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface MainViewController : UIViewController
 
 
 @end

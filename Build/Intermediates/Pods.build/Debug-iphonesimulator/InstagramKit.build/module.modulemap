@@ -1,0 +1,6 @@
+framework module InstagramKit {
+  umbrella header "InstagramKit.h"
+
+  export *
+  module * { export * }
+}
