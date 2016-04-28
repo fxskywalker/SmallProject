@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 
+
+NSString *accessToken = @"ee544bba51cf4b4cbf1e1391443cb0c1";
+
 @interface ViewController ()
 
 @end
@@ -17,6 +20,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
+ 
 }
 
 - (void)didReceiveMemoryWarning {
