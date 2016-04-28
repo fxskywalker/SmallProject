@@ -62,6 +62,10 @@
       if ([object.type isEqualToString:@"image"]) {
         static NSString *CellIdentifier1 = @"ImageCell";
         ImageTableViewCell *imageCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
+        imageCell.nameLabel.text = object.name;
+        imageCell.likesLabel.text =  [@"likes: " stringByAppendingString:[@(object.like) stringValue]];
+        imageCell.commentsLabel.text =  [@"comments: " stringByAppendingString:[@(object.comment) stringValue]];
+        
         [[APIManager sharedInstance] getImageByLink:object.imageNail withCallBack:^(NSURL* url){
           NSData * imageData = [[NSData alloc] initWithContentsOfURL: url];
           imageCell.mainPhotoImageView.image = [UIImage imageWithData: imageData];

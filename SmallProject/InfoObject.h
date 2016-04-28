@@ -30,8 +30,8 @@
 @property (nonatomic, retain) NSString *videoLarge;
 @property (nonatomic, retain) NSString *userProfile;
 @property (nonatomic, retain) NSString *name;
-@property (nonatomic) NSInteger* like;
-@property (nonatomic) NSInteger* comment;
+@property (nonatomic) NSInteger like;
+@property (nonatomic) NSInteger comment;
 
 @end
 
