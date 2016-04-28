@@ -11,17 +11,26 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "ImageTableViewCell.h"
 #import "VideoTableViewCell.h"
+#import "InfoObject.h"
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 
 @end
 
-@implementation MainViewController
+@implementation MainViewController {
+  NSArray * tempInfo;
+}
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
+  APIManager * temp = [APIManager sharedInstance];
+  [[APIManager sharedInstance] getVedioAndImageLinkArray: ^(bool result) {
+    tempInfo = temp.infos;
+    [self.mainTableView reloadData];
+  }];
+  
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,21 +40,59 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-  return 2;
+  return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return 1;
+  
+  if (tempInfo) {
+    return [tempInfo count];
+  }
+  return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  static NSString *CellIdentifier1 = @"ImageCell";
-  //static NSString *CellIdentifier2 = @"VideoCell";
-  ImageTableViewCell *imageCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
-//  VideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
-  return imageCell;
+  if (tempInfo) {
+    if (tempInfo[indexPath.row]) {
+      InfoObject * object = tempInfo[indexPath.row];
+      NSLog(@"%ld",(long)indexPath.item);
+      // show image
+      if ([object.type isEqualToString:@"image"]) {
+        static NSString *CellIdentifier1 = @"ImageCell";
+        ImageTableViewCell *imageCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
+        [[APIManager sharedInstance] getImageByLink:object.imageNail withCallBack:^(NSURL* url){
+          NSData * imageData = [[NSData alloc] initWithContentsOfURL: url];
+          imageCell.mainPhotoImageView.image = [UIImage imageWithData: imageData];
+        }];
+        [[APIManager sharedInstance] getImageByLink:object.userProfile withCallBack:^(NSURL* url){
+          NSData * imageData = [[NSData alloc] initWithContentsOfURL: url];
+          imageCell.thumbnailImageView.image = [UIImage imageWithData: imageData];
+        }];
+        return imageCell;
+        // show video
+      } else {
+        static NSString *CellIdentifier1 = @"ImageCell";
+        //static NSString *CellIdentifier2 = @"VideoCell";
+        ImageTableViewCell *imageCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
+        //  VideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
+        return imageCell;
+      }
+    } else {
+      static NSString *CellIdentifier1 = @"ImageCell";
+      //static NSString *CellIdentifier2 = @"VideoCell";
+      ImageTableViewCell *imageCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
+      //  VideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
+      return imageCell;
+    }
+  } else {
+    static NSString *CellIdentifier1 = @"ImageCell";
+    //static NSString *CellIdentifier2 = @"VideoCell";
+    ImageTableViewCell *imageCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
+    //  VideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
+    return imageCell;
+  }
 }
 
 @end
