@@ -102,7 +102,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
- 
   if (tempInfo) {
     if (tempInfo[indexPath.section]) {
       InfoObject * object = tempInfo[indexPath.section];
@@ -142,6 +141,13 @@
       if ([object.type isEqualToString:@"image"]) {
         static NSString *CellIdentifier1 = @"ImageCell";
         ImageTableViewCell *imageCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
+        
+        imageCell.layer.masksToBounds = NO;
+        imageCell.layer.shadowOffset = CGSizeMake(3, 3);
+        imageCell.layer.shadowRadius = 5;
+        imageCell.layer.shadowOpacity = 0.5;
+        imageCell.layer.shadowColor = [[UIColor blackColor] CGColor];
+        
         imageCell.selectionStyle = UITableViewCellSelectionStyleNone;
         imageCell.nameLabel.text = object.name;
         imageCell.likesLabel.text =  [@"likes: " stringByAppendingString:[@(object.like) stringValue]];
@@ -185,6 +191,13 @@
       } else {
         static NSString *CellIdentifier2 = @"VideoCell";
         VideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
+        
+        videoCell.layer.masksToBounds = NO;
+        videoCell.layer.shadowOffset = CGSizeMake(3, 3);
+        videoCell.layer.shadowRadius = 5;
+        videoCell.layer.shadowOpacity = 0.5;
+        videoCell.layer.shadowColor = [[UIColor blackColor] CGColor];
+        
         videoCell.selectionStyle = UITableViewCellSelectionStyleNone;
         videoCell.nameLabel.text = object.name;
         videoCell.likesLabel.text =  [@"likes: " stringByAppendingString:[@(object.like) stringValue]];
