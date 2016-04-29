@@ -58,6 +58,28 @@
   return 5;
 }
 
+- (void) removeFile:(NSURL*) url {
+  NSString *path = [url path];
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  NSError *error;
+  if ([fileManager fileExistsAtPath:path]) {
+    if ([[NSFileManager defaultManager] isDeletableFileAtPath:path]) {
+      BOOL success = [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
+      if (!success) {
+        NSLog(@"Error removing file at path");
+      }
+      else
+      {
+        NSLog(@"File removed  at path");
+      }
+    }
+    else
+    {
+      NSLog(@"file not exists");
+    }
+  }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   LargeImageViewController *largeImageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"largeimageVC"];
@@ -65,10 +87,20 @@
     if (tempInfo[indexPath.row]) {
       InfoObject * object = tempInfo[indexPath.row];
       if ([object.type isEqualToString:@"image"]) {
-        [[APIManager sharedInstance] getImageByLink:object.imageNail withCallBack:^(NSURL* url){
+        if (photoStore[object.id]) {
+          //make sure do UI in main queue
+          dispatch_async(dispatch_get_main_queue(), ^{
+            largeImageVC.largeImageView.image = photoStore[object.id];
+          });
+        }
+        [[APIManager sharedInstance] getImageByLink:object.imageLarge withCallBack:^(NSURL* url){
           NSData * imageData = [[NSData alloc] initWithContentsOfURL: url];
+
           largeImageVC.largeImageView.image = [UIImage imageWithData: imageData];
+          [self removeFile:url];
         }];
+      } else {
+        //TODO:video
       }
     }
   }
@@ -96,13 +128,16 @@
             NSData * imageData = [[NSData alloc] initWithContentsOfURL: url];
             imageCell.mainPhotoImageView.image = [UIImage imageWithData: imageData];
             NSString *tempId = object.id;
-            //
+            //update image
             [photoStore setObject:imageCell.mainPhotoImageView.image forKey:[tempId copy]];
+            //clear storage
+            [self removeFile:url];
           }];
         } else {
           imageCell.mainPhotoImageView.image = photoStore[object.id];
         }
         
+        // make round profile
         imageCell.thumbnailImageView.layer.cornerRadius = imageCell.thumbnailImageView.frame.size.height / 2;
         imageCell.thumbnailImageView.layer.borderWidth = 1;
         imageCell.thumbnailImageView.layer.borderColor = [[UIColor grayColor] CGColor];
@@ -123,24 +158,30 @@
         return imageCell;
       // show video
       } else {
-        static NSString *CellIdentifier1 = @"ImageCell";
-        //static NSString *CellIdentifier2 = @"VideoCell";
-        ImageTableViewCell *imageCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
-        //  VideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
-        return imageCell;
+        static NSString *CellIdentifier2 = @"VideoCell";
+        VideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
+        videoCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        videoCell.nameLabel.text = object.name;
+        videoCell.likesLabel.text =  [@"likes: " stringByAppendingString:[@(object.like) stringValue]];
+        videoCell.commentsLabel.text =  [@"comments: " stringByAppendingString:[@(object.comment) stringValue]];
+        
+        // make round profile
+        videoCell.thumbnailImageView.layer.cornerRadius = videoCell.thumbnailImageView.frame.size.height / 2;
+        videoCell.thumbnailImageView.layer.borderWidth = 1;
+        videoCell.thumbnailImageView.layer.borderColor = [[UIColor grayColor] CGColor];
+        CALayer *videoLayer = videoCell.thumbnailImageView.layer;
+        videoLayer.cornerRadius = 0.5 * videoCell.thumbnailImageView.frame.size.width;
+        videoLayer.masksToBounds = YES;
+        return videoCell;
       }
     } else {
       static NSString *CellIdentifier1 = @"ImageCell";
-      //static NSString *CellIdentifier2 = @"VideoCell";
       ImageTableViewCell *imageCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
-      //  VideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
       return imageCell;
     }
   } else {
     static NSString *CellIdentifier1 = @"ImageCell";
-    //static NSString *CellIdentifier2 = @"VideoCell";
     ImageTableViewCell *imageCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
-    //  VideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
     return imageCell;
   }
 }

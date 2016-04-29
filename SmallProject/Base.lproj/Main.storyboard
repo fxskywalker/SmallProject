@@ -206,10 +206,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="UrN-AI-5dl" firstAttribute="centerX" secondItem="LYQ-3y-WQu" secondAttribute="centerX" id="7J6-YS-CY5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UrN-AI-5dl" secondAttribute="trailing" constant="-20" id="UPQ-8y-pFh"/>
                             <constraint firstItem="UrN-AI-5dl" firstAttribute="leading" secondItem="LYQ-3y-WQu" secondAttribute="leadingMargin" constant="-20" id="hjR-kM-eid"/>
                             <constraint firstItem="UrN-AI-5dl" firstAttribute="bottom" secondItem="sKu-wX-bKe" secondAttribute="top" constant="-100" id="lt6-dV-t4e"/>
+                            <constraint firstItem="UrN-AI-5dl" firstAttribute="centerY" secondItem="LYQ-3y-WQu" secondAttribute="centerY" constant="-100" id="wob-lp-INn"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="lt6-dV-t4e"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="largeImageView" destination="UrN-AI-5dl" id="Lao-sK-txh"/>
@@ -217,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gyk-D7-YO5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="257" y="-276"/>
+            <point key="canvasLocation" x="250" y="-281"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WT8-bg-7OY">
