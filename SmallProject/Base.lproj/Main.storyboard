@@ -198,7 +198,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="horseHead" translatesAutoresizingMaskIntoConstraints="NO" id="UrN-AI-5dl">
-                                <rect key="frame" x="0.0" y="-100" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="UrN-AI-5dl" secondAttribute="height" multiplier="1:1" id="gNV-nt-aXj"/>
                                 </constraints>
@@ -210,7 +210,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="UrN-AI-5dl" secondAttribute="trailing" constant="-20" id="UPQ-8y-pFh"/>
                             <constraint firstItem="UrN-AI-5dl" firstAttribute="leading" secondItem="LYQ-3y-WQu" secondAttribute="leadingMargin" constant="-20" id="hjR-kM-eid"/>
                             <constraint firstItem="UrN-AI-5dl" firstAttribute="bottom" secondItem="sKu-wX-bKe" secondAttribute="top" constant="-100" id="lt6-dV-t4e"/>
-                            <constraint firstItem="UrN-AI-5dl" firstAttribute="centerY" secondItem="LYQ-3y-WQu" secondAttribute="centerY" constant="-100" id="wob-lp-INn"/>
+                            <constraint firstItem="UrN-AI-5dl" firstAttribute="centerY" secondItem="LYQ-3y-WQu" secondAttribute="centerY" id="wob-lp-INn"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
