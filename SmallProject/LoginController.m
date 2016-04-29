@@ -15,7 +15,7 @@
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
   
-  [self authorizeWithSafariWithScopes];
+  [self authorize];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -23,7 +23,7 @@
   // Dispose of any resources that can be recreated.
 }
 
-- (void)authorizeWithSafariWithScopes
+- (void)authorize
 {
   NSString *urlString = @"https://api.instagram.com/oauth/authorize/?client_id=649a0fe5cb0a42d8aaef019e2646f85c&redirect_uri=http://www.google.com&response_type=token";
   NSURL *url = [NSURL URLWithString:urlString];
