@@ -136,8 +136,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (tempInfo) {
-    if (tempInfo[indexPath.row]) {
-      InfoObject * object = tempInfo[indexPath.row];
+    if (tempInfo[indexPath.section]) {
+      InfoObject * object = tempInfo[indexPath.section];
       // show image
       if ([object.type isEqualToString:@"image"]) {
         static NSString *CellIdentifier1 = @"ImageCell";
