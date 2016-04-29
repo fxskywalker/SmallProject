@@ -60,20 +60,6 @@
   [self initializeRefreshControl];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-  return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-  
-  if (tempInfo) {
-    return [tempInfo count];
-  }
-  return 5;
-}
-
 - (void) removeFile:(NSURL*) url {
   NSString *path = [url path];
   NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -96,12 +82,30 @@
   }
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+  if (tempInfo) {
+    return [tempInfo count];
+  }
+  return 5;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+  return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+  return 10;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
  
   if (tempInfo) {
-    if (tempInfo[indexPath.row]) {
-      InfoObject * object = tempInfo[indexPath.row];
+    if (tempInfo[indexPath.section]) {
+      InfoObject * object = tempInfo[indexPath.section];
       if ([object.type isEqualToString:@"image"]) {
          LargeImageViewController *largeImageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"largeimageVC"];
         if (photoStore[object.id]) {
