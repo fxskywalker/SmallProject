@@ -13,6 +13,7 @@
 #import "VideoTableViewCell.h"
 #import "InfoObject.h"
 #import "LargeImageViewController.h"
+#import "LargeVideoViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface MainViewController ()
@@ -107,7 +108,12 @@
         }];
         [self.navigationController pushViewController:largeImageVC animated:YES];
       } else {
-        
+        LargeVideoViewController *largeVideoVC = [self.storyboard instantiateViewControllerWithIdentifier:@"largevideoVC"];
+        [[APIManager sharedInstance] getVideoByLink: object.videoLarge withCallBack:^(NSURL* url) {
+          [largeVideoVC playVideo:url];
+          [self removeFile:url];
+        }];
+        [self.navigationController pushViewController:largeVideoVC animated:YES];
       }
     }
   }
@@ -190,6 +196,8 @@
             }
             [playerStore setObject:avPlayer forKey:indexPath];
             [videoStore setObject:url forKey:[object.id copy]];
+            //clear storage
+            [self removeFile:url];
           }];
         } else {
           AVPlayer* tempPlayer = (AVPlayer *)playerStore[indexPath];

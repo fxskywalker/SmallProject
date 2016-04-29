@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LargeVideoViewController : UIViewController
+-(void) playVideo: (NSURL*) url;
 
 @end
