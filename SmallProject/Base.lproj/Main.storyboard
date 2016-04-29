@@ -118,7 +118,10 @@
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="19a-F1-H4e">
                                                     <rect key="frame" x="225" y="70" width="150" height="150"/>
-                                                    <color key="backgroundColor" red="0.91764705879999997" green="0.26274509800000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="19a-F1-H4e" secondAttribute="height" multiplier="40:27" constant="-72.2222222222222" id="src-Th-GNI"/>
+                                                    </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jx-rS-Y5O">
                                                     <rect key="frame" x="410" y="26" width="175" height="17"/>
@@ -159,6 +162,7 @@
                                             <outlet property="likesLabel" destination="3Jx-rS-Y5O" id="eH5-c1-i12"/>
                                             <outlet property="nameLabel" destination="AxW-1j-EqO" id="eBv-TS-6vK"/>
                                             <outlet property="thumbnailImageView" destination="kNc-tS-XOI" id="Z1e-Dk-tUr"/>
+                                            <outlet property="videoView" destination="19a-F1-H4e" id="1C2-fv-KPm"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
