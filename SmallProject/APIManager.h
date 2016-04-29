@@ -14,13 +14,16 @@
 {
   NSString * baseURL;
   NSMutableArray * imfos;
+  NSString * token;
 }
 @property (nonatomic, retain) NSString *baseURL;
 @property (nonatomic, retain) NSMutableArray *infos;
+@property (nonatomic, retain) NSString *token;
 
 - (void) getImageByLink: (NSString*) link withCallBack: (void(^)(NSURL*))completion;
 - (void) getVideoByLink: (NSString*) link withCallBack: (void(^)(NSURL*))completion;
 - (void) getVedioAndImageLinkArray: (void(^)(bool))completion;
+-(void) buildUpBaseURL:(NSString *) urlToken;
 
 + (id)sharedInstance;
 

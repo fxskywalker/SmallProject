@@ -1,5 +1,6 @@
 dependencies: \
-  /Users/fangxin/Documents/SmallProject/SmallProject/MainViewController.m \
+  /Users/fangxin/Documents/SmallProject/SmallProject/LoginController.m \
+  /Users/fangxin/Documents/SmallProject/SmallProject/LoginController.h \
   /Users/fangxin/Documents/SmallProject/SmallProject/MainViewController.h \
   /Users/fangxin/Documents/SmallProject/SmallProject/APIManager.h \
   /Users/fangxin/Documents/SmallProject/Build/Products/Debug-iphonesimulator/AFNetworking.framework/Headers/AFNetworking.h \
@@ -11,10 +12,4 @@ dependencies: \
   /Users/fangxin/Documents/SmallProject/Build/Products/Debug-iphonesimulator/AFNetworking.framework/Headers/AFHTTPRequestOperation.h \
   /Users/fangxin/Documents/SmallProject/Build/Products/Debug-iphonesimulator/AFNetworking.framework/Headers/AFHTTPRequestOperationManager.h \
   /Users/fangxin/Documents/SmallProject/Build/Products/Debug-iphonesimulator/AFNetworking.framework/Headers/AFURLSessionManager.h \
-  /Users/fangxin/Documents/SmallProject/Build/Products/Debug-iphonesimulator/AFNetworking.framework/Headers/AFHTTPSessionManager.h \
-  /Users/fangxin/Documents/SmallProject/SmallProject/ImageTableViewCell.h \
-  /Users/fangxin/Documents/SmallProject/SmallProject/VideoTableViewCell.h \
-  /Users/fangxin/Documents/SmallProject/SmallProject/InfoObject.h \
-  /Users/fangxin/Documents/SmallProject/SmallProject/LargeImageViewController.h \
-  /Users/fangxin/Documents/SmallProject/SmallProject/LargeVideoViewController.h \
-  /Users/fangxin/Documents/SmallProject/SmallProject/LoginController.h
+  /Users/fangxin/Documents/SmallProject/Build/Products/Debug-iphonesimulator/AFNetworking.framework/Headers/AFHTTPSessionManager.h

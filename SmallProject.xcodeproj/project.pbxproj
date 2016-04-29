@@ -21,6 +21,7 @@
 		1047847A1CD1AA1F00DF453C /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 104784791CD1AA1F00DF453C /* APIManager.m */; };
 		1047847D1CD1CA4800DF453C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1047847C1CD1CA4800DF453C /* AVFoundation.framework */; };
 		1047847F1CD1CA5200DF453C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1047847E1CD1CA5200DF453C /* CoreMedia.framework */; };
+		10A045AF1CD3D439005A7E90 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A045AE1CD3D439005A7E90 /* LoginController.m */; };
 		BF21DE771CD284D10055E6F2 /* ImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF21DE761CD284D10055E6F2 /* ImageTableViewCell.m */; };
 		BF21DE7A1CD289F70055E6F2 /* VideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF21DE791CD289F70055E6F2 /* VideoTableViewCell.m */; };
 		BF21DE831CD2AF400055E6F2 /* LargeImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF21DE821CD2AF400055E6F2 /* LargeImageViewController.m */; };
@@ -69,6 +70,8 @@
 		1047847B1CD1AA3B00DF453C /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		1047847C1CD1CA4800DF453C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1047847E1CD1CA5200DF453C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		10A045AD1CD3D439005A7E90 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
+		10A045AE1CD3D439005A7E90 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		8900B5D1A009C56F9C4A3DDD /* Pods_SmallProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmallProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF21DE751CD284D10055E6F2 /* ImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTableViewCell.h; sourceTree = "<group>"; };
 		BF21DE761CD284D10055E6F2 /* ImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTableViewCell.m; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 				1047844A1CD12D4400DF453C /* AppDelegate.m */,
 				1047844C1CD12D4400DF453C /* MainViewController.h */,
 				1047844D1CD12D4400DF453C /* MainViewController.m */,
+				10A045AD1CD3D439005A7E90 /* LoginController.h */,
+				10A045AE1CD3D439005A7E90 /* LoginController.m */,
 				BF21DE811CD2AF400055E6F2 /* LargeImageViewController.h */,
 				BF21DE821CD2AF400055E6F2 /* LargeImageViewController.m */,
 				103FD2481CD322A200754D62 /* LargeVideoViewController.h */,
@@ -396,6 +401,7 @@
 				BF21DE831CD2AF400055E6F2 /* LargeImageViewController.m in Sources */,
 				103FD24A1CD322A200754D62 /* LargeVideoViewController.m in Sources */,
 				1047844B1CD12D4400DF453C /* AppDelegate.m in Sources */,
+				10A045AF1CD3D439005A7E90 /* LoginController.m in Sources */,
 				BF21DE771CD284D10055E6F2 /* ImageTableViewCell.m in Sources */,
 				103FD2471CD2A1C400754D62 /* InfoObject.m in Sources */,
 				104784481CD12D4400DF453C /* main.m in Sources */,

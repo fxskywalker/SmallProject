@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-
+- (void) loadingData;
 @end
 

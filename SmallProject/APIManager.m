@@ -13,7 +13,7 @@
 
 @implementation APIManager
 @synthesize baseURL;
-
+@synthesize token;
 
 #pragma mark Singleton Methods
 
@@ -31,10 +31,14 @@
 {
   if (self = [super init])
   {
-    self.baseURL = @"https://api.instagram.com/v1/users/3178274469/media/recent?access_token=3178274469.649a0fe.975563ad16f04634b468cb4b72d5477b&count=5&max_id=";
     self.infos = [[NSMutableArray alloc] init];
   }
   return self;
+}
+
+-(void) buildUpBaseURL:(NSString *) urlToken {
+  self.token = urlToken;
+  self.baseURL = [[@"https://api.instagram.com/v1/users/3178274469/media/recent?access_token=" stringByAppendingString:self.token] stringByAppendingString:@"&count=5&max_id="];
 }
 
 - (void) getVedioAndImageLinkArray: (void(^)(bool))completion  {

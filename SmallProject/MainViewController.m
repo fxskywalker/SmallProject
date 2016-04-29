@@ -15,6 +15,7 @@
 #import "LargeImageViewController.h"
 #import "LargeVideoViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "LoginController.h"
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -40,17 +41,23 @@
   profileStore = [[NSMutableDictionary alloc] init];
   videoStore = [[NSMutableDictionary alloc] init];
   playerStore = [[NSMutableDictionary alloc] init];
+  LoginController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"loginVC"];
+  loginVC.mainVC = self;
+  [self presentViewController:loginVC animated:nil completion:nil];
+}
+
+- (void)didReceiveMemoryWarning {
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
+}
+
+- (void) loadingData {
   APIManager * temp = [APIManager sharedInstance];
   [[APIManager sharedInstance] getVedioAndImageLinkArray: ^(bool result) {
     tempInfo = temp.infos;
     [self.mainTableView reloadData];
   }];
   [self initializeRefreshControl];
-}
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
