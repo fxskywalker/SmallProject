@@ -134,7 +134,6 @@
   if (tempInfo) {
     if (tempInfo[indexPath.row]) {
       InfoObject * object = tempInfo[indexPath.row];
-      NSLog(@"%ld",(long)indexPath.item);
       // show image
       if ([object.type isEqualToString:@"image"]) {
         static NSString *CellIdentifier1 = @"ImageCell";
