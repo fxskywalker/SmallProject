@@ -15,4 +15,5 @@ dependencies: \
   /Users/fangxin/Documents/SmallProject/SmallProject/ImageTableViewCell.h \
   /Users/fangxin/Documents/SmallProject/SmallProject/VideoTableViewCell.h \
   /Users/fangxin/Documents/SmallProject/SmallProject/InfoObject.h \
-  /Users/fangxin/Documents/SmallProject/SmallProject/LargeImageViewController.h
+  /Users/fangxin/Documents/SmallProject/SmallProject/LargeImageViewController.h \
+  /Users/fangxin/Documents/SmallProject/SmallProject/LargeVideoViewController.h
