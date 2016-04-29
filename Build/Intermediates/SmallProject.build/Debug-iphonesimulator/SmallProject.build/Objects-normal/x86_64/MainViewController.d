@@ -14,4 +14,5 @@ dependencies: \
   /Users/fangxin/Documents/SmallProject/Build/Products/Debug-iphonesimulator/AFNetworking.framework/Headers/AFHTTPSessionManager.h \
   /Users/fangxin/Documents/SmallProject/SmallProject/ImageTableViewCell.h \
   /Users/fangxin/Documents/SmallProject/SmallProject/VideoTableViewCell.h \
-  /Users/fangxin/Documents/SmallProject/SmallProject/InfoObject.h
+  /Users/fangxin/Documents/SmallProject/SmallProject/InfoObject.h \
+  /Users/fangxin/Documents/SmallProject/SmallProject/LargeImageViewController.h

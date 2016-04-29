@@ -12,6 +12,7 @@
 #import "ImageTableViewCell.h"
 #import "VideoTableViewCell.h"
 #import "InfoObject.h"
+#import "LargeImageViewController.h"
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -57,6 +58,23 @@
   return 5;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  LargeImageViewController *largeImageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"largeimageVC"];
+  if (tempInfo) {
+    if (tempInfo[indexPath.row]) {
+      InfoObject * object = tempInfo[indexPath.row];
+      if ([object.type isEqualToString:@"image"]) {
+        [[APIManager sharedInstance] getImageByLink:object.imageNail withCallBack:^(NSURL* url){
+          NSData * imageData = [[NSData alloc] initWithContentsOfURL: url];
+          largeImageVC.largeImageView.image = [UIImage imageWithData: imageData];
+        }];
+      }
+    }
+  }
+  [self.navigationController pushViewController:largeImageVC animated:YES];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (tempInfo) {
@@ -67,6 +85,7 @@
       if ([object.type isEqualToString:@"image"]) {
         static NSString *CellIdentifier1 = @"ImageCell";
         ImageTableViewCell *imageCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
+        imageCell.selectionStyle = UITableViewCellSelectionStyleNone;
         imageCell.nameLabel.text = object.name;
         imageCell.likesLabel.text =  [@"likes: " stringByAppendingString:[@(object.like) stringValue]];
         imageCell.commentsLabel.text =  [@"comments: " stringByAppendingString:[@(object.comment) stringValue]];

@@ -22,6 +22,7 @@
 		1047847F1CD1CA5200DF453C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1047847E1CD1CA5200DF453C /* CoreMedia.framework */; };
 		BF21DE771CD284D10055E6F2 /* ImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF21DE761CD284D10055E6F2 /* ImageTableViewCell.m */; };
 		BF21DE7A1CD289F70055E6F2 /* VideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF21DE791CD289F70055E6F2 /* VideoTableViewCell.m */; };
+		BF21DE831CD2AF400055E6F2 /* LargeImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF21DE821CD2AF400055E6F2 /* LargeImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		BF21DE761CD284D10055E6F2 /* ImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTableViewCell.m; sourceTree = "<group>"; };
 		BF21DE781CD289F70055E6F2 /* VideoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoTableViewCell.h; sourceTree = "<group>"; };
 		BF21DE791CD289F70055E6F2 /* VideoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoTableViewCell.m; sourceTree = "<group>"; };
+		BF21DE811CD2AF400055E6F2 /* LargeImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargeImageViewController.h; sourceTree = "<group>"; };
+		BF21DE821CD2AF400055E6F2 /* LargeImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargeImageViewController.m; sourceTree = "<group>"; };
 		DAB3498A9FB43A6BB48DCC51 /* Pods-SmallProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmallProject/Pods-SmallProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +133,8 @@
 				1047844A1CD12D4400DF453C /* AppDelegate.m */,
 				1047844C1CD12D4400DF453C /* MainViewController.h */,
 				1047844D1CD12D4400DF453C /* MainViewController.m */,
+				BF21DE811CD2AF400055E6F2 /* LargeImageViewController.h */,
+				BF21DE821CD2AF400055E6F2 /* LargeImageViewController.m */,
 				1047847B1CD1AA3B00DF453C /* APIManager.h */,
 				104784791CD1AA1F00DF453C /* APIManager.m */,
 				103FD2451CD2A1C400754D62 /* InfoObject.h */,
@@ -383,6 +388,7 @@
 			files = (
 				1047847A1CD1AA1F00DF453C /* APIManager.m in Sources */,
 				1047844E1CD12D4400DF453C /* MainViewController.m in Sources */,
+				BF21DE831CD2AF400055E6F2 /* LargeImageViewController.m in Sources */,
 				1047844B1CD12D4400DF453C /* AppDelegate.m in Sources */,
 				BF21DE771CD284D10055E6F2 /* ImageTableViewCell.m in Sources */,
 				103FD2471CD2A1C400754D62 /* InfoObject.m in Sources */,
