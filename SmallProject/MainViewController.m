@@ -13,6 +13,7 @@
 #import "VideoTableViewCell.h"
 #import "InfoObject.h"
 #import "LargeImageViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
@@ -165,6 +166,15 @@
         videoCell.likesLabel.text =  [@"likes: " stringByAppendingString:[@(object.like) stringValue]];
         videoCell.commentsLabel.text =  [@"comments: " stringByAppendingString:[@(object.comment) stringValue]];
         
+        [[APIManager sharedInstance] getVideoByLink: object.videoNail withCallBack:^(NSURL* url) {
+          AVPlayer * avPlayer = [AVPlayer playerWithURL:url];
+          AVPlayerLayer* avPlayerLayer = [AVPlayerLayer playerLayerWithPlayer:avPlayer];
+          avPlayerLayer.frame = videoCell.videoView.layer.bounds;
+          avPlayerLayer.videoGravity = AVLayerVideoGravityResize;
+          [videoCell.videoView.layer addSublayer: avPlayerLayer];
+          [avPlayer play];
+        }];
+
         // make round profile
         videoCell.thumbnailImageView.layer.cornerRadius = videoCell.thumbnailImageView.frame.size.height / 2;
         videoCell.thumbnailImageView.layer.borderWidth = 1;
@@ -172,6 +182,16 @@
         CALayer *videoLayer = videoCell.thumbnailImageView.layer;
         videoLayer.cornerRadius = 0.5 * videoCell.thumbnailImageView.frame.size.width;
         videoLayer.masksToBounds = YES;
+        
+        if (! profileStore[object.name]) {
+          [[APIManager sharedInstance] getImageByLink:object.userProfile withCallBack:^(NSURL* url) {
+            NSData * imageData = [[NSData alloc] initWithContentsOfURL: url];
+            videoCell.thumbnailImageView.image = [UIImage imageWithData: imageData];
+            [profileStore setObject:videoCell.thumbnailImageView.image forKey:[object.name copy]];
+          }];
+        } else {
+          videoCell.thumbnailImageView.image = profileStore[object.name];
+        }
         return videoCell;
       }
     } else {
