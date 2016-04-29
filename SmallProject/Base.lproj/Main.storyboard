@@ -266,10 +266,10 @@
             </objects>
             <point key="canvasLocation" x="-1247" y="-276"/>
         </scene>
-        <!--View Controller-->
+        <!--Login Controller-->
         <scene sceneID="yrb-lH-5Gd">
             <objects>
-                <viewController id="bmK-Ut-7gL" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginVC" id="bmK-Ut-7gL" customClass="LoginController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Qu-1b-3L7"/>
                         <viewControllerLayoutGuide type="bottom" id="eOa-oX-2cC"/>
@@ -278,17 +278,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gtH-zY-uJB">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtH-zY-uJB">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="614"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="bmK-Ut-7gL" id="3wQ-1o-7fW"/>
+                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gtH-zY-uJB" secondAttribute="trailing" id="Oyt-np-eCY"/>
+                            <constraint firstItem="gtH-zY-uJB" firstAttribute="top" secondItem="4id-NF-qrF" secondAttribute="top" id="Sb8-bq-zQ5"/>
+                            <constraint firstItem="gtH-zY-uJB" firstAttribute="leading" secondItem="4id-NF-qrF" secondAttribute="leading" id="bzu-Hh-HmN"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="gtH-zY-uJB" secondAttribute="bottom" constant="-14" id="qn1-US-1zk"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loginWebView" destination="gtH-zY-uJB" id="UU6-n8-iBY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zKb-Vn-ES4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1247" y="414"/>
+            <point key="canvasLocation" x="-1247" y="410"/>
         </scene>
     </scenes>
     <resources>
