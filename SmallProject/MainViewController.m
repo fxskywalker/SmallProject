@@ -24,6 +24,8 @@
   NSArray * tempInfo;
   NSMutableDictionary* photoStore;
   NSMutableDictionary* profileStore;
+  NSMutableDictionary* videoStore;
+  NSMutableDictionary* playerStore;
 }
 
 - (void)viewDidLoad {
@@ -32,6 +34,8 @@
   self.title = @"Instagram Project";
   photoStore = [[NSMutableDictionary alloc] init];
   profileStore = [[NSMutableDictionary alloc] init];
+  videoStore = [[NSMutableDictionary alloc] init];
+  playerStore = [[NSMutableDictionary alloc] init];
   APIManager * temp = [APIManager sharedInstance];
   [[APIManager sharedInstance] getVedioAndImageLinkArray: ^(bool result) {
     tempInfo = temp.infos;
@@ -83,11 +87,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  LargeImageViewController *largeImageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"largeimageVC"];
+ 
   if (tempInfo) {
     if (tempInfo[indexPath.row]) {
       InfoObject * object = tempInfo[indexPath.row];
       if ([object.type isEqualToString:@"image"]) {
+         LargeImageViewController *largeImageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"largeimageVC"];
         if (photoStore[object.id]) {
           //make sure do UI in main queue
           dispatch_async(dispatch_get_main_queue(), ^{
@@ -100,12 +105,12 @@
           largeImageVC.largeImageView.image = [UIImage imageWithData: imageData];
           [self removeFile:url];
         }];
+        [self.navigationController pushViewController:largeImageVC animated:YES];
       } else {
-        //TODO:video
+        
       }
     }
   }
-  [self.navigationController pushViewController:largeImageVC animated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -166,14 +171,30 @@
         videoCell.likesLabel.text =  [@"likes: " stringByAppendingString:[@(object.like) stringValue]];
         videoCell.commentsLabel.text =  [@"comments: " stringByAppendingString:[@(object.comment) stringValue]];
         
-        [[APIManager sharedInstance] getVideoByLink: object.videoNail withCallBack:^(NSURL* url) {
-          AVPlayer * avPlayer = [AVPlayer playerWithURL:url];
-          AVPlayerLayer* avPlayerLayer = [AVPlayerLayer playerLayerWithPlayer:avPlayer];
-          avPlayerLayer.frame = videoCell.videoView.layer.bounds;
-          avPlayerLayer.videoGravity = AVLayerVideoGravityResize;
-          [videoCell.videoView.layer addSublayer: avPlayerLayer];
-          [avPlayer play];
-        }];
+       
+        if (!videoStore[object.id]) {
+          [[APIManager sharedInstance] getVideoByLink: object.videoNail withCallBack:^(NSURL* url) {
+            AVPlayer * avPlayer = [AVPlayer playerWithURL:url];
+            AVPlayerLayer* avPlayerLayer = [AVPlayerLayer playerLayerWithPlayer:avPlayer];
+            avPlayerLayer.frame = videoCell.videoView.layer.bounds;
+            avPlayerLayer.videoGravity = AVLayerVideoGravityResize;
+            [videoCell.videoView.layer addSublayer: avPlayerLayer];
+            avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(playerItemDidReachEnd:)
+                                                         name:AVPlayerItemDidPlayToEndTimeNotification
+                                                       object:[avPlayer currentItem]];
+            if([self.mainTableView.indexPathsForVisibleRows containsObject:indexPath]) {
+              [avPlayer play];
+            }
+            [playerStore setObject:avPlayer forKey:indexPath];
+            [videoStore setObject:url forKey:[object.id copy]];
+          }];
+        } else {
+          AVPlayer* tempPlayer = (AVPlayer *)playerStore[indexPath];
+          [tempPlayer play];
+        }
 
         // make round profile
         videoCell.thumbnailImageView.layer.cornerRadius = videoCell.thumbnailImageView.frame.size.height / 2;
@@ -204,6 +225,17 @@
     ImageTableViewCell *imageCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
     return imageCell;
   }
+}
+
+-(void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath{
+    if (playerStore[indexPath]) {
+      [(AVPlayer *)playerStore[indexPath] pause];
+    }
+}
+
+- (void)playerItemDidReachEnd:(NSNotification *)notification {
+  AVPlayerItem *item = [notification object];
+  [item seekToTime:kCMTimeZero];
 }
 
 @end

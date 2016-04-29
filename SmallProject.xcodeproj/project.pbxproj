@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		07FC3972D51574B228BB5093 /* Pods_SmallProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8900B5D1A009C56F9C4A3DDD /* Pods_SmallProject.framework */; };
 		103FD2471CD2A1C400754D62 /* InfoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 103FD2461CD2A1C400754D62 /* InfoObject.m */; };
+		103FD24A1CD322A200754D62 /* LargeVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 103FD2491CD322A200754D62 /* LargeVideoViewController.m */; };
 		104784481CD12D4400DF453C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 104784471CD12D4400DF453C /* main.m */; };
 		1047844B1CD12D4400DF453C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1047844A1CD12D4400DF453C /* AppDelegate.m */; };
 		1047844E1CD12D4400DF453C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1047844D1CD12D4400DF453C /* MainViewController.m */; };
@@ -46,6 +47,8 @@
 		0240212D91A45906543EEC2F /* Pods-SmallProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmallProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmallProject/Pods-SmallProject.release.xcconfig"; sourceTree = "<group>"; };
 		103FD2451CD2A1C400754D62 /* InfoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoObject.h; sourceTree = "<group>"; };
 		103FD2461CD2A1C400754D62 /* InfoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoObject.m; sourceTree = "<group>"; };
+		103FD2481CD322A200754D62 /* LargeVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LargeVideoViewController.h; sourceTree = "<group>"; };
+		103FD2491CD322A200754D62 /* LargeVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LargeVideoViewController.m; sourceTree = "<group>"; };
 		104784431CD12D4400DF453C /* SmallProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmallProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		104784471CD12D4400DF453C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		104784491CD12D4400DF453C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -135,6 +138,8 @@
 				1047844D1CD12D4400DF453C /* MainViewController.m */,
 				BF21DE811CD2AF400055E6F2 /* LargeImageViewController.h */,
 				BF21DE821CD2AF400055E6F2 /* LargeImageViewController.m */,
+				103FD2481CD322A200754D62 /* LargeVideoViewController.h */,
+				103FD2491CD322A200754D62 /* LargeVideoViewController.m */,
 				1047847B1CD1AA3B00DF453C /* APIManager.h */,
 				104784791CD1AA1F00DF453C /* APIManager.m */,
 				103FD2451CD2A1C400754D62 /* InfoObject.h */,
@@ -389,6 +394,7 @@
 				1047847A1CD1AA1F00DF453C /* APIManager.m in Sources */,
 				1047844E1CD12D4400DF453C /* MainViewController.m in Sources */,
 				BF21DE831CD2AF400055E6F2 /* LargeImageViewController.m in Sources */,
+				103FD24A1CD322A200754D62 /* LargeVideoViewController.m in Sources */,
 				1047844B1CD12D4400DF453C /* AppDelegate.m in Sources */,
 				BF21DE771CD284D10055E6F2 /* ImageTableViewCell.m in Sources */,
 				103FD2471CD2A1C400754D62 /* InfoObject.m in Sources */,
