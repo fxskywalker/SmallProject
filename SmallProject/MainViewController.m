@@ -27,12 +27,15 @@
   NSMutableDictionary* profileStore;
   NSMutableDictionary* videoStore;
   NSMutableDictionary* playerStore;
+  UIActivityIndicatorView* indicatorFooter;
+  bool loadingMoreData;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
   self.title = @"Instagram Project";
+  loadingMoreData = NO;
   photoStore = [[NSMutableDictionary alloc] init];
   profileStore = [[NSMutableDictionary alloc] init];
   videoStore = [[NSMutableDictionary alloc] init];
@@ -42,7 +45,7 @@
     tempInfo = temp.infos;
     [self.mainTableView reloadData];
   }];
-  
+  [self initializeRefreshControl];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -196,11 +199,13 @@
             }
             [playerStore setObject:avPlayer forKey:indexPath];
             [videoStore setObject:url forKey:[object.id copy]];
-            //clear storage
-            [self removeFile:url];
           }];
         } else {
           AVPlayer* tempPlayer = (AVPlayer *)playerStore[indexPath];
+          AVPlayerLayer* avPlayerLayer = [AVPlayerLayer playerLayerWithPlayer:tempPlayer];
+          avPlayerLayer.frame = videoCell.videoView.layer.bounds;
+          avPlayerLayer.videoGravity = AVLayerVideoGravityResize;
+          [videoCell.videoView.layer addSublayer: avPlayerLayer];
           [tempPlayer play];
         }
 
@@ -244,6 +249,41 @@
 - (void)playerItemDidReachEnd:(NSNotification *)notification {
   AVPlayerItem *item = [notification object];
   [item seekToTime:kCMTimeZero];
+}
+
+-(void)initializeRefreshControl
+{
+  indicatorFooter = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.mainTableView.frame), 44)];
+  [indicatorFooter setColor:[UIColor blackColor]];
+  
+  [self.mainTableView setTableFooterView:indicatorFooter];
+}
+
+-(void)refreshTableVeiwList
+{
+  [indicatorFooter startAnimating];
+  APIManager * temp = [APIManager sharedInstance];
+  [[APIManager sharedInstance] getVedioAndImageLinkArray: ^(bool result) {
+    if (result) {
+      tempInfo = temp.infos;
+      [self.mainTableView reloadData];
+      loadingMoreData = NO;
+    }
+    [indicatorFooter stopAnimating];
+  }];
+}
+-(void)scrollViewDidScroll: (UIScrollView*)scrollView
+{
+  if (scrollView.contentOffset.y + scrollView.frame.size.height >= scrollView.contentSize.height)
+  {
+    if (!loadingMoreData)
+    {
+      loadingMoreData = YES;
+      
+      [self refreshTableVeiwList];
+    }
+    
+  }
 }
 
 @end

@@ -38,6 +38,11 @@
 }
 
 - (void) getVedioAndImageLinkArray: (void(^)(bool))completion  {
+  if (!self.baseURL) {
+    completion(false);
+    return;
+  }
+  
   NSURL *url = [NSURL URLWithString:self.baseURL];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
   
@@ -47,6 +52,8 @@
   [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
     if (responseObject[@"pagination"]) {
       self.baseURL = responseObject[@"pagination"][@"next_url"];
+    } else {
+      self.baseURL = nil;
     }
     
     for(int i = 0 ; i < [responseObject[@"data"] count]; i++) {
