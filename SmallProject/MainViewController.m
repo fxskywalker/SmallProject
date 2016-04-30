@@ -60,20 +60,6 @@
   [self initializeRefreshControl];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-  return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-  
-  if (tempInfo) {
-    return [tempInfo count];
-  }
-  return 5;
-}
-
 - (void) removeFile:(NSURL*) url {
   NSString *path = [url path];
   NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -96,12 +82,37 @@
   }
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+  if (tempInfo) {
+    return [tempInfo count];
+  }
+  return 5;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+  return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+  if (section == 0) {
+    return 1;
+  }
+  return 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+  return 1;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
- 
   if (tempInfo) {
-    if (tempInfo[indexPath.row]) {
-      InfoObject * object = tempInfo[indexPath.row];
+    if (tempInfo[indexPath.section]) {
+      InfoObject * object = tempInfo[indexPath.section];
       if ([object.type isEqualToString:@"image"]) {
          LargeImageViewController *largeImageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"largeimageVC"];
         if (photoStore[object.id]) {
@@ -132,17 +143,29 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (tempInfo) {
-    if (tempInfo[indexPath.row]) {
-      InfoObject * object = tempInfo[indexPath.row];
-      NSLog(@"%ld",(long)indexPath.item);
+    if (tempInfo[indexPath.section]) {
+      InfoObject * object = tempInfo[indexPath.section];
       // show image
       if ([object.type isEqualToString:@"image"]) {
         static NSString *CellIdentifier1 = @"ImageCell";
         ImageTableViewCell *imageCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
+        
+        imageCell.layer.masksToBounds = NO;
+        imageCell.layer.shadowOffset = CGSizeMake(3, 3);
+        imageCell.layer.shadowRadius = 5;
+        imageCell.layer.shadowOpacity = 0.5;
+        imageCell.layer.shadowColor = [[UIColor blackColor] CGColor];
+        
         imageCell.selectionStyle = UITableViewCellSelectionStyleNone;
         imageCell.nameLabel.text = object.name;
         imageCell.likesLabel.text =  [@"likes: " stringByAppendingString:[@(object.like) stringValue]];
         imageCell.commentsLabel.text =  [@"comments: " stringByAppendingString:[@(object.comment) stringValue]];
+        
+        imageCell.mainPhotoImageView.layer.masksToBounds = NO;
+        imageCell.mainPhotoImageView.layer.shadowOffset = CGSizeMake(3, 3);
+        imageCell.mainPhotoImageView.layer.shadowRadius = 5;
+        imageCell.mainPhotoImageView.layer.shadowOpacity = 0.5;
+        imageCell.mainPhotoImageView.layer.shadowColor = [[UIColor blackColor] CGColor];
         
         // prevent call API deplicate time
         if (!photoStore[object.id]) {
@@ -182,10 +205,23 @@
       } else {
         static NSString *CellIdentifier2 = @"VideoCell";
         VideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
+        
+        videoCell.layer.masksToBounds = NO;
+        videoCell.layer.shadowOffset = CGSizeMake(3, 3);
+        videoCell.layer.shadowRadius = 5;
+        videoCell.layer.shadowOpacity = 0.5;
+        videoCell.layer.shadowColor = [[UIColor blackColor] CGColor];
+        
         videoCell.selectionStyle = UITableViewCellSelectionStyleNone;
         videoCell.nameLabel.text = object.name;
         videoCell.likesLabel.text =  [@"likes: " stringByAppendingString:[@(object.like) stringValue]];
         videoCell.commentsLabel.text =  [@"comments: " stringByAppendingString:[@(object.comment) stringValue]];
+        
+        videoCell.videoView.layer.masksToBounds = NO;
+        videoCell.videoView.layer.shadowOffset = CGSizeMake(3, 3);
+        videoCell.videoView.layer.shadowRadius = 5;
+        videoCell.videoView.layer.shadowOpacity = 0.5;
+        videoCell.videoView.layer.shadowColor = [[UIColor blackColor] CGColor];
         
        
         if (!videoStore[object.id]) {
