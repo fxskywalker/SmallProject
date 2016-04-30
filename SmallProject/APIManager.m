@@ -70,7 +70,7 @@
             
       if ([(NSString*)(responseObject[@"data"][i][@"type"]) isEqualToString:@"image"]) {
         tempObject.type = @"image";
-        tempObject.imageNail = (NSString*) (responseObject[@"data"][i][@"images"][@"thumbnail"][@"url"]);
+        tempObject.imageNail = (NSString*) (responseObject[@"data"][i][@"images"][@"low_resolution"][@"url"]);
         tempObject.imageLarge = (NSString*) (responseObject[@"data"][i][@"images"][@"standard_resolution"][@"url"]);
       } else {
         tempObject.type = @"video";

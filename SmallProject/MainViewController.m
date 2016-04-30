@@ -161,6 +161,12 @@
         imageCell.likesLabel.text =  [@"likes: " stringByAppendingString:[@(object.like) stringValue]];
         imageCell.commentsLabel.text =  [@"comments: " stringByAppendingString:[@(object.comment) stringValue]];
         
+        imageCell.mainPhotoImageView.layer.masksToBounds = NO;
+        imageCell.mainPhotoImageView.layer.shadowOffset = CGSizeMake(3, 3);
+        imageCell.mainPhotoImageView.layer.shadowRadius = 5;
+        imageCell.mainPhotoImageView.layer.shadowOpacity = 0.5;
+        imageCell.mainPhotoImageView.layer.shadowColor = [[UIColor blackColor] CGColor];
+        
         // prevent call API deplicate time
         if (!photoStore[object.id]) {
           [[APIManager sharedInstance] getImageByLink:object.imageNail withCallBack:^(NSURL* url){
@@ -210,6 +216,12 @@
         videoCell.nameLabel.text = object.name;
         videoCell.likesLabel.text =  [@"likes: " stringByAppendingString:[@(object.like) stringValue]];
         videoCell.commentsLabel.text =  [@"comments: " stringByAppendingString:[@(object.comment) stringValue]];
+        
+        videoCell.videoView.layer.masksToBounds = NO;
+        videoCell.videoView.layer.shadowOffset = CGSizeMake(3, 3);
+        videoCell.videoView.layer.shadowRadius = 5;
+        videoCell.videoView.layer.shadowOpacity = 0.5;
+        videoCell.videoView.layer.shadowColor = [[UIColor blackColor] CGColor];
         
        
         if (!videoStore[object.id]) {
