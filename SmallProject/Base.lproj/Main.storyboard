@@ -187,8 +187,15 @@
                             <constraint firstItem="Laq-9I-LIk" firstAttribute="top" secondItem="Vnr-1O-F1v" secondAttribute="top" id="fVz-iF-uSj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ouC-TX-C00"/>
+                    <navigationItem key="navigationItem" id="ouC-TX-C00">
+                        <barButtonItem key="rightBarButtonItem" image="gear" id="Q2a-1F-J2e">
+                            <connections>
+                                <action selector="logout:" destination="zcE-9p-K9v" id="pug-Ry-cxC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="gearButton" destination="Q2a-1F-J2e" id="SmZ-ro-00e"/>
                         <outlet property="mainTableView" destination="Laq-9I-LIk" id="kgN-SY-Fnt"/>
                     </connections>
                 </viewController>
@@ -317,6 +324,7 @@
     </scenes>
     <resources>
         <image name="downloading" width="102" height="102"/>
+        <image name="gear" width="35" height="35"/>
         <image name="horseHead" width="76" height="75"/>
     </resources>
 </document>

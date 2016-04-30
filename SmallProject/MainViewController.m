@@ -18,6 +18,7 @@
 #import "LoginController.h"
 
 @interface MainViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *gearButton;
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
 
 @end
@@ -36,7 +37,6 @@
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
   self.title = @"Instagram Project";
-  loadingMoreData = NO;
   photoStore = [[NSMutableDictionary alloc] init];
   profileStore = [[NSMutableDictionary alloc] init];
   videoStore = [[NSMutableDictionary alloc] init];
@@ -44,6 +44,19 @@
   LoginController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"loginVC"];
   loginVC.mainVC = self;
   [self presentViewController:loginVC animated:nil completion:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [self.mainTableView reloadData];
+}
+
+-(void) viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
+  for (NSString* key in playerStore.allKeys) {
+    AVPlayer * temp = playerStore[key];
+    [temp pause];
+  }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,8 +69,62 @@
   [[APIManager sharedInstance] getVedioAndImageLinkArray: ^(bool result) {
     tempInfo = temp.infos;
     [self.mainTableView reloadData];
+    loadingMoreData = NO;
+    [self initializeRefreshControl];
   }];
-  [self initializeRefreshControl];
+  
+}
+
+- (IBAction)logout:(id)sender {
+  UIAlertController * alert = [UIAlertController
+                              alertControllerWithTitle:nil
+                              message:nil
+                              preferredStyle:UIAlertControllerStyleActionSheet];
+  
+  UIAlertAction* ok = [UIAlertAction actionWithTitle:@"Logout"
+                      style:UIAlertActionStyleDefault
+                      handler:^(UIAlertAction * action) {
+                        for (NSString* key in playerStore.allKeys) {
+                          AVPlayer * temp = playerStore[key];
+                          [temp pause];
+                        }
+                        tempInfo = nil;
+                        [photoStore removeAllObjects];
+                        [profileStore removeAllObjects];
+                        [videoStore removeAllObjects];
+                        [playerStore removeAllObjects];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                          [self.mainTableView reloadData];
+                        });
+                        
+                        APIManager* tempAPI = [APIManager sharedInstance];
+                        [tempAPI.infos removeAllObjects];
+                        tempAPI.token = nil;
+                        tempAPI.baseURL = nil;
+                        NSHTTPCookie *cookie;
+                        NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+                        
+                        for (cookie in [cookieJar cookies]) {
+                          [cookieJar deleteCookie:cookie];
+                        }
+                         [alert dismissViewControllerAnimated:YES completion:nil];
+                        LoginController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"loginVC"];
+                        loginVC.mainVC = self;
+                        [self presentViewController:loginVC animated:YES completion:nil];
+                       }];
+  UIAlertAction* cancel = [UIAlertAction
+                           actionWithTitle:@"Cancel"
+                           style:UIAlertActionStyleCancel
+                           handler:^(UIAlertAction * action)
+                           {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+                           }];
+  
+  [alert addAction:ok];
+  [alert addAction:cancel];
+  
+  [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void) removeFile:(NSURL*) url {
@@ -87,7 +154,7 @@
   if (tempInfo) {
     return [tempInfo count];
   }
-  return 5;
+  return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -232,6 +299,7 @@
             avPlayerLayer.videoGravity = AVLayerVideoGravityResize;
             [videoCell.videoView.layer addSublayer: avPlayerLayer];
             avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+            avPlayer.volume = 0;
             
             [[NSNotificationCenter defaultCenter] addObserver:self
                                                      selector:@selector(playerItemDidReachEnd:)
