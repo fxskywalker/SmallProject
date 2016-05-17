@@ -10,7 +10,6 @@
 #import "MainViewController.h"
 
 @interface LoginController : UIViewController
-
 @property (weak, nonatomic) IBOutlet UIWebView *loginWebView;
 @property (weak, nonatomic) MainViewController* mainVC;
 @end
